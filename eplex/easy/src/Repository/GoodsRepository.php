@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Repository;
 
 class GoodsRepository
 {
@@ -14,7 +14,7 @@ class GoodsRepository
         $json = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
         $filename = $this->generateFilename($code);
 
-        if (file_put_contents(__DIR__ . '/../storage/' . $filename, $json) === false) {
+        if (file_put_contents(__DIR__ . '/../../storage/' . $filename, $json) === false) {
             throw new \RuntimeException("Не удалось сохранить файл: {$filename}");
         }
 

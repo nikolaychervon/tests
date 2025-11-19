@@ -1,7 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Extractor;
 
+use App\Enum\GoodFieldsConstants;
 use Symfony\Component\DomCrawler\Crawler;
 
 class GoodsExtractor
@@ -87,9 +88,9 @@ class GoodsExtractor
     public function extractCommonData(Crawler $firstRow): array
     {
         return [
-            'name' => $this->extractProductName($firstRow),
-            'article' => $this->extractCode($firstRow),
-            'brand' => $this->extractBrand($firstRow)
+            GoodFieldsConstants::NAME => $this->extractProductName($firstRow),
+            GoodFieldsConstants::ARTICLE => $this->extractCode($firstRow),
+            GoodFieldsConstants::BRAND => $this->extractBrand($firstRow)
         ];
     }
 

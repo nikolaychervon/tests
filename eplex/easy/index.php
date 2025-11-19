@@ -3,10 +3,10 @@
 require_once 'vendor/autoload.php';
 
 use App\AutozapParser;
-use App\CodeValidator;
-use App\GoodsExtractor;
-use App\GoodsRepository;
-use App\HttpClient;
+use App\Extractor\GoodsExtractor;
+use App\HTTP\HttpClient;
+use App\Repository\GoodsRepository;
+use App\Validator\CodeValidator;
 
 if (PHP_SAPI !== 'cli') {
     die('Этот скрипт предназначен только для командной строки');

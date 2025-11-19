@@ -2,6 +2,11 @@
 
 namespace App;
 
+use App\Enum\GoodFieldsConstants;
+use App\Extractor\GoodsExtractor;
+use App\HTTP\HttpClient;
+use App\Repository\GoodsRepository;
+use App\Validator\CodeValidator;
 use Symfony\Component\DomCrawler\Crawler;
 
 class AutozapParser
@@ -88,10 +93,10 @@ class AutozapParser
     private function parseProductRow(Crawler $row, array $commonData, array $pricesMap, int $rowNumber): ?array
     {
         $item = array_merge($commonData, [
-            'price' => $pricesMap[$rowNumber] ?? '',
-            'count' => $this->goodsExtractor->extractStockCount($row),
-            'time' => $this->goodsExtractor->extractDeliveryTime($row),
-            'id' => $this->goodsExtractor->extractProductId($row)
+            GoodFieldsConstants::PRICE => $pricesMap[$rowNumber] ?? '',
+            GoodFieldsConstants::COUNT => $this->goodsExtractor->extractStockCount($row),
+            GoodFieldsConstants::TIME => $this->goodsExtractor->extractDeliveryTime($row),
+            GoodFieldsConstants::ID => $this->goodsExtractor->extractProductId($row)
         ]);
 
         return $this->validateProductData($item) ? $item : null;
@@ -103,9 +108,7 @@ class AutozapParser
      */
     private function validateProductData(array $item): bool
     {
-        $requiredFields = ['name', 'price', 'article', 'brand', 'count', 'time', 'id'];
-
-        foreach ($requiredFields as $field) {
+        foreach (GoodFieldsConstants::REQUIRED_FIELDS as $field) {
             if (empty($item[$field])) {
                 return false;
             }
