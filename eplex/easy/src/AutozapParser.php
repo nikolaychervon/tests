@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Enum\GoodFieldsConstants;
+use App\Constants\GoodFieldsConstants;
 use App\Extractor\GoodsExtractor;
 use App\HTTP\HttpClient;
 use App\Repository\GoodsRepository;
@@ -74,7 +74,13 @@ class AutozapParser
         $result = [];
         foreach ($rows as $index => $row) {
             $rowCrawler = new Crawler($row);
-            $item = $this->parseProductRow($rowCrawler, $commonData, $pricesMap, $index + 1);
+            $item = $this->parseProductRow(
+                row: $rowCrawler,
+                commonData: $commonData,
+                pricesMap: $pricesMap,
+                rowNumber: $index + 1
+            );
+
             if ($item) {
                 $result[] = $item;
             }

@@ -2,7 +2,7 @@
 
 namespace App\Extractor;
 
-use App\Enum\GoodFieldsConstants;
+use App\Constants\GoodFieldsConstants;
 use Symfony\Component\DomCrawler\Crawler;
 
 class GoodsExtractor

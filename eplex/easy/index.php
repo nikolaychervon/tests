@@ -2,11 +2,7 @@
 
 require_once 'vendor/autoload.php';
 
-use App\AutozapParser;
-use App\Extractor\GoodsExtractor;
-use App\HTTP\HttpClient;
-use App\Repository\GoodsRepository;
-use App\Validator\CodeValidator;
+use App\AutozapParserFactory;
 
 if (PHP_SAPI !== 'cli') {
     die('Этот скрипт предназначен только для командной строки');
@@ -24,11 +20,7 @@ if (!isset($argv[1])) {
     $code = $argv[1];
 }
 
-$client = new HttpClient();
-$extractor = new GoodsExtractor();
-$repository = new GoodsRepository();
-$validator = new CodeValidator();
-$parser = new AutozapParser($client, $extractor, $repository, $validator);
+$parser = AutozapParserFactory::create();
 $result = $parser->parse($code);
 
 if ($result['success']) {
