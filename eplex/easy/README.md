@@ -4,6 +4,7 @@
 
 ### Используемые инструменты:
 
+- PHP 8.4
 - ООП
 - Composer
 - guzzlehttp/guzzle
