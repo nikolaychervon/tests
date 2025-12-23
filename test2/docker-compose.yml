@@ -1,4 +1,4 @@
-version: '5.0'
+version: '3.9'
 
 services:
   app:
@@ -42,6 +42,19 @@ services:
     volumes:
       - ./src:/var/www
     command: php artisan schedule:work
+    depends_on:
+      - redis
+    networks:
+      - laravel
+
+  queue:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: laravel_queue
+    volumes:
+      - ./src:/var/www
+    command: php artisan queue:work redis
     depends_on:
       - redis
     networks:
