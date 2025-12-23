@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repositories;
+
 use App\DTO\UserDTO;
 use Illuminate\Support\Facades\Cache;
 
@@ -30,12 +31,12 @@ class UserRedisRepository
     }
 
     /**
-     * @return array{int, UserDTO}
+     * @return array<UserDTO>
      */
     public function all(): array
     {
         $users = $this->getUsersFromCache();
-        return array_map(fn($data) => UserDTO::fromArray($data), $users);
+        return array_map(fn ($data) => UserDTO::fromArray($data), $users);
     }
 
     /**

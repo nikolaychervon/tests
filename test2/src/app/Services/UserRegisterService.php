@@ -17,7 +17,7 @@ class UserRegisterService
 
     /**
      * @param UserDTO $userDTO
-     * @return array{string, string}
+     * @return array{nickname: string, avatar: string}
      * @throws ValidationException
      */
     public function register(UserDTO $userDTO): array

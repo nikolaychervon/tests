@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use PHPUnit\Framework\Attributes\Test;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class UsersListApiTest extends TestCase
@@ -24,7 +24,7 @@ class UsersListApiTest extends TestCase
     }
 
     #[Test]
-    public function can_list_registered_users()
+    public function canListRegisteredUsers(): void
     {
         $avatars = [
             UploadedFile::fake()->image('a1.jpg')->size(1024),

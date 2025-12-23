@@ -3,9 +3,9 @@
 namespace Tests\Feature;
 
 use App\Jobs\CleanupOldUsers;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 use PHPUnit\Framework\Attributes\Test;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class OldUsersDeletedJobApiTest extends TestCase
@@ -13,7 +13,7 @@ class OldUsersDeletedJobApiTest extends TestCase
     use RefreshDatabase;
 
     #[Test]
-    public function job_for_clearing_old_users_is_dispatched()
+    public function jobForClearingOldUsersIsDispatched(): void
     {
         Queue::fake();
         $this->artisan('schedule:run');

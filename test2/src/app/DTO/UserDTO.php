@@ -19,7 +19,7 @@ class UserDTO
     }
 
     /**
-     * @return array{string, string}
+     * @return array{nickname: string, avatar_path: string, created_at: int}
      */
     public function toArray(): array
     {
@@ -31,7 +31,7 @@ class UserDTO
     }
 
     /**
-     * @param array{string, string} $data
+     * @param array{nickname: string, avatar_path: string, created_at: int} $data
      * @return self
      */
     public static function fromArray(array $data): self

@@ -6,14 +6,11 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UserRegisterRequest extends FormRequest
 {
-    /**
-     * @return array{string, string}
-     */
     public function rules(): array
     {
         return [
             'nickname' => 'required|string',
-            'avatar' => 'required|image|max:2048',
+            'avatar' => 'required|image|mimes:png,jpg,jpeg|max:2048',
         ];
     }
 }

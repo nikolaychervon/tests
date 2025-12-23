@@ -8,7 +8,7 @@ class UserFormatter
 {
     /**
      * @param UserDTO $userDTO
-     * @return array{string, string}
+     * @return array{nickname: string, avatar: string}
      */
     public function format(UserDTO $userDTO): array
     {

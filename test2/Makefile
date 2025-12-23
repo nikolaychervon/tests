@@ -5,6 +5,8 @@ up:
 
 build:
 	docker-compose up -d --build
+	docker exec -it $(APP) composer install
+	docker exec -it $(APP) php artisan key:generate
 
 down:
 	docker-compose down
@@ -12,8 +14,8 @@ down:
 bash:
 	docker exec -it $(APP) bash
 
-key-generate:
-	docker exec -it $(APP) php artisan key:generate
-
 test:
 	docker exec -it $(APP) php artisan test
+
+code-check:
+	docker exec -it $(APP) composer code-check

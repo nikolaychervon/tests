@@ -14,7 +14,7 @@ class UsersGettingService
     }
 
     /**
-     * @return array{int, array{string, string}}
+     * @return list<array{nickname: string, avatar: string}>
      */
     public function getList(): array
     {

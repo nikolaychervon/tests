@@ -2,12 +2,13 @@
 
 namespace Tests\Feature;
 
-use PHPUnit\Framework\Attributes\Test;
 use App\Repositories\UserRedisRepository;
+use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class UserRegisterApiTest extends TestCase
@@ -27,7 +28,7 @@ class UserRegisterApiTest extends TestCase
     }
 
     #[Test]
-    public function can_register_user_with_valid_data()
+    public function canRegisterUserWithValidData(): void
     {
         $avatar = UploadedFile::fake()->image('avatar.jpg')->size(1024);
 
@@ -37,7 +38,10 @@ class UserRegisterApiTest extends TestCase
         ]);
 
         $response->assertStatus(200);
-        Storage::disk('public')->assertExists('avatars/' . $avatar->hashName());
+
+        /** @var FilesystemAdapter $disk */
+        $disk = Storage::disk('public');
+        $disk->assertExists('avatars/' . $avatar->hashName());
 
         $users = Cache::get(UserRedisRepository::KEY);
         $this->assertNotNull($users[self::BASE_NICKNAME]);
@@ -46,14 +50,14 @@ class UserRegisterApiTest extends TestCase
     }
 
     #[Test]
-    public function cannot_register_user_with_void_data()
+    public function cannotRegisterUserWithVoidData(): void
     {
         $response = $this->postJson(self::API_METHOD);
         $response->assertStatus(422);
     }
 
     #[Test]
-    public function cannot_register_user_with_duplicate_nickname()
+    public function cannotRegisterUserWithDuplicatedNickname(): void
     {
         $avatar = UploadedFile::fake()->image('avatar.jpg')->size(1024);
 
@@ -72,7 +76,7 @@ class UserRegisterApiTest extends TestCase
     }
 
     #[Test]
-    public function avatar_must_be_valid_image_and_within_size_limit()
+    public function avatarMustBeValidImageAndWithinSizeLimit(): void
     {
         $file = UploadedFile::fake()->create('document.pdf', 100);
 
