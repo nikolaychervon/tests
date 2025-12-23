@@ -1,8 +1,10 @@
 FROM php:8.4-fpm
 
 RUN apt-get update && apt-get install -y \
-    git unzip libzip-dev libpng-dev \
-    && docker-php-ext-install pdo zip gd
+    git unzip libzip-dev libpng-dev libjpeg-dev \
+    && docker-php-ext-configure gd --with-jpeg \
+    && docker-php-ext-install pdo zip gd \
+    && docker-php-ext-install fileinfo
 
 RUN pecl install redis && docker-php-ext-enable redis
 

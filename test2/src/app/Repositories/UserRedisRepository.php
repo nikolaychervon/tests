@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Cache;
 
 class UserRedisRepository
 {
-    private const string KEY = 'users';
+    public const string KEY = 'users';
 
     /**
      * @param string $nickname
