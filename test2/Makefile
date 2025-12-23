@@ -6,6 +6,7 @@ up:
 build:
 	docker-compose up -d --build
 	docker exec -it $(APP) composer install
+	docker exec -it $(APP) sh -c 'if [ ! -f .env ]; then cp .env.example .env; fi'
 	docker exec -it $(APP) php artisan key:generate
 
 down:

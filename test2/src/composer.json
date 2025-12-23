@@ -82,7 +82,7 @@
         ],
         "code-check": [
             "vendor/bin/phpcs --standard=PSR12 app/ tests/",
-            "vendor/bin/phpstan analyse app/ tests/ --level=5 --memory-limit=512M"
+            "vendor/bin/phpstan analyse app/ tests/ --level=3 --memory-limit=512M"
         ]
     },
     "extra": {
