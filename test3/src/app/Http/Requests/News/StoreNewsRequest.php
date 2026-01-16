@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\News;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class StoreNewsRequest extends FormRequest
+class StoreNewsRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.

@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Comments;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class DeleteCommentRequest extends FormRequest
+class DeleteCommentRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.

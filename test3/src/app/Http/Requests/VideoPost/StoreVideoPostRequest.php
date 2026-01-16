@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\VideoPost;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class StoreVideoPostRequest extends FormRequest
+class StoreVideoPostRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
