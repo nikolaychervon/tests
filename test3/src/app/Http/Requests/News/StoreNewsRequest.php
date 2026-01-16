@@ -2,27 +2,36 @@
 
 namespace App\Http\Requests\News;
 
-use App\Http\Requests\BaseRequest;
+use Illuminate\Foundation\Http\FormRequest;
+use OpenApi\Attributes as OA;
 
-class StoreNewsRequest extends BaseRequest
+#[OA\Schema(
+    schema: "StoreNews",
+    title: "Create news",
+    description: "Create news",
+    required: ["title", "content"],
+    properties: [
+        new OA\Property(property: "title", description: "Заголовок", type: "string", example: "Example title"),
+        new OA\Property(property: "content", description: "Контент", type: "string", example: "Example content"),
+    ]
+)]
+class StoreNewsRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-    {
-        return false;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|string|max:100',
+            'content' => 'required|string|max:500',
         ];
+    }
+
+    public function getTitle(): string
+    {
+        return $this->get('title');
+    }
+
+    public function getContentField(): string
+    {
+        return $this->get('content');
     }
 }

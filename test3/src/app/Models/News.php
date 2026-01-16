@@ -17,6 +17,8 @@ use Illuminate\Database\Eloquent\Collection;
  *
  * @property-read Collection<int, Comment> $comments
  * @property-read int|null $comments_count
+ *
+ * @method static withCursorPagination(int $perPage)
  */
 class News extends Model
 {
@@ -28,4 +30,9 @@ class News extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function scopeWithCursorPagination($query, int $perPage = 10)
+    {
+        return $query->orderBy('id', 'desc')->cursorPaginate($perPage);
+    }
 }

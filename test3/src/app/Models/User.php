@@ -8,29 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Laravel\Sanctum\HasApiTokens;
-use OpenApi\Attributes as OA;
 
-#[OA\Schema(
-    schema: "User",
-    title: "User",
-    description: "User model",
-    required: ["id", "login", "created_at"],
-    properties: [
-        new OA\Property(property: "id", type: "integer", example: 1),
-        new OA\Property(property: "login", type: "string", example: "Test_login"),
-        new OA\Property(property: "created_at", type: "string", format: "date-time", example: "2026-01-16 09:21"),
-    ]
-)]
-#[OA\Schema(
-    schema: "Auth",
-    title: "Auth Data",
-    description: "Data for authorization",
-    required: ["login", "password"],
-    properties: [
-        new OA\Property(property: "login", description: "Логин", type: "string", example: "testuser"),
-        new OA\Property(property: "password", description: "Пароль", type: "string", format: "password", example: "password")
-    ]
-)]
 /**
  * @property int $id
  * @property string $login

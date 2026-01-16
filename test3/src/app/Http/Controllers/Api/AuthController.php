@@ -40,40 +40,7 @@ class AuthController extends Controller
             new OA\Response(
                 response: 201,
                 description: "Успешная регистрация",
-                content: new OA\JsonContent(
-                    properties: [
-                        new OA\Property(
-                            property: "success",
-                            type: "boolean",
-                            example: true
-                        ),
-                        new OA\Property(
-                            property: "data",
-                            properties: [
-                                new OA\Property(
-                                    property: "user",
-                                    ref: "#/components/schemas/User"
-                                ),
-                                new OA\Property(
-                                    property: "token",
-                                    type: "string",
-                                    example: "1|TOKENTESTESTSETESTSETSETSETSETSET"
-                                ),
-                                new OA\Property(
-                                    property: "token_type",
-                                    type: "string",
-                                    example: "Bearer"
-                                )
-                            ],
-                            type: "object"
-                        ),
-                        new OA\Property(
-                            property: "message",
-                            type: "string",
-                            example: "User registered successfully"
-                        )
-                    ]
-                )
+                content: new OA\JsonContent(ref: "#/components/schemas/AuthorizedUser")
             ),
             new OA\Response(
                 response: 422,
@@ -107,41 +74,8 @@ class AuthController extends Controller
         responses: [
             new OA\Response(
                 response: 201,
-                description: "Успешная авторизация",
-                content: new OA\JsonContent(
-                    properties: [
-                        new OA\Property(
-                            property: "success",
-                            type: "boolean",
-                            example: true
-                        ),
-                        new OA\Property(
-                            property: "data",
-                            properties: [
-                                new OA\Property(
-                                    property: "user",
-                                    ref: "#/components/schemas/User"
-                                ),
-                                new OA\Property(
-                                    property: "token",
-                                    type: "string",
-                                    example: "1|TOKENTESTESTSETESTSETSETSETSETSET"
-                                ),
-                                new OA\Property(
-                                    property: "token_type",
-                                    type: "string",
-                                    example: "Bearer"
-                                )
-                            ],
-                            type: "object"
-                        ),
-                        new OA\Property(
-                            property: "message",
-                            type: "string",
-                            example: "Logged in successfully"
-                        )
-                    ]
-                )
+                description: "Успешная регистрация",
+                content: new OA\JsonContent(ref: "#/components/schemas/AuthorizedUser")
             ),
             new OA\Response(
                 response: 422,
@@ -175,16 +109,8 @@ class AuthController extends Controller
                 description: "Успешный выход",
                 content: new OA\JsonContent(
                     properties: [
-                        new OA\Property(
-                            property: "success",
-                            type: "boolean",
-                            example: true
-                        ),
-                        new OA\Property(
-                            property: "message",
-                            type: "string",
-                            example: "Logged out successfully"
-                        )
+                        new OA\Property(property: "success", type: "boolean", example: true),
+                        new OA\Property(property: "message", type: "string", example: "Logged out successfully")
                     ]
                 )
             ),
@@ -193,11 +119,7 @@ class AuthController extends Controller
                 description: "Не авторизован",
                 content: new OA\JsonContent(
                     properties: [
-                        new OA\Property(
-                            property: "message",
-                            type: "string",
-                            example: "Unauthenticated."
-                        )
+                        new OA\Property(property: "message", type: "string", example: "Unauthenticated.")
                     ]
                 )
             )
@@ -225,18 +147,11 @@ class AuthController extends Controller
                 description: "Успешно",
                 content: new OA\JsonContent(
                     properties: [
-                        new OA\Property(
-                            property: "success",
-                            type: "boolean",
-                            example: true
-                        ),
+                        new OA\Property(property: "success", type: "boolean", example: true),
                         new OA\Property(
                             property: "data",
                             properties: [
-                                new OA\Property(
-                                    property: "user",
-                                    ref: "#/components/schemas/User"
-                                )
+                                new OA\Property(property: "user", ref: "#/components/schemas/User")
                             ],
                             type: "object"
                         )
@@ -248,11 +163,7 @@ class AuthController extends Controller
                 description: "Не авторизован",
                 content: new OA\JsonContent(
                     properties: [
-                        new OA\Property(
-                            property: "message",
-                            type: "string",
-                            example: "Unauthenticated."
-                        )
+                        new OA\Property(property: "message", type: "string", example: "Unauthenticated.")
                     ]
                 )
             )
