@@ -11,21 +11,28 @@ use Illuminate\Database\Eloquent\Collection;
 /**
  * @property int $id
  * @property string $title
- * @property string $url
+ * @property string $filepath
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *
  * @property-read Collection<int, Comment> $comments
  * @property-read int|null $comments_count
+ *
+ * @method static withCursorPagination(int $perPage)
  */
 class VideoPost extends Model
 {
     use HasFactory, HasComments;
 
-    protected $fillable = ['title', 'url'];
+    protected $fillable = ['title', 'filepath'];
 
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function scopeWithCursorPagination($query, int $perPage = 10)
+    {
+        return $query->orderBy('id', 'desc')->cursorPaginate($perPage);
+    }
 }
