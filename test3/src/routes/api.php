@@ -15,13 +15,13 @@ Route::prefix('v1')->group(function () {
     Route::prefix('news')->name('news.')->group(function () {
         Route::get('/', [NewsController::class, 'index'])->name('index');
         Route::get('/{id}', [NewsController::class, 'show'])->name('show');
-        Route::post('/', [NewsController::class, 'store'])->name('store'); // Без аутентификации
+        Route::post('/', [NewsController::class, 'store'])->name('store');
     });
 
     Route::prefix('video-posts')->name('video-posts.')->group(function () {
         Route::get('/', [VideoPostController::class, 'index'])->name('index');
         Route::get('/{id}', [VideoPostController::class, 'show'])->name('show');
-        Route::post('/', [VideoPostController::class, 'store'])->name('store'); // Без аутентификации
+        Route::post('/', [VideoPostController::class, 'store'])->name('store');
     });
 
     Route::middleware('auth:sanctum')->group(function () {
