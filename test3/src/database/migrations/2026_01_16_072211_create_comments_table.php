@@ -13,7 +13,25 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
+            $table->text('content');
+
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onDelete('cascade');
+
+            $table->foreignId('parent_id')
+                ->nullable()
+                ->constrained('comments')
+                ->onDelete('cascade');
+
+            $table->string('commentable_type');
+            $table->unsignedBigInteger('commentable_id');
             $table->timestamps();
+
+            // Индексы для оптимизации
+            $table->index(['commentable_type', 'commentable_id']);
+            $table->index('parent_id');
+            $table->index('user_id');
         });
     }
 

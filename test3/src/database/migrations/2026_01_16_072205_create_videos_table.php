@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('videos', function (Blueprint $table) {
+        Schema::create('video_posts', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('url');
             $table->timestamps();
         });
     }
