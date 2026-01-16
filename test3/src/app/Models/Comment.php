@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Collection;
  * @property Carbon $updated_at
  *
  * @property-read User $user
- * @property-read News|Video $commentable
+ * @property-read News|VideoPost $commentable
  * @property-read Comment|null $parent
  * @property-read Collection<int, Comment> $replies
  * @property-read int|null $replies_count

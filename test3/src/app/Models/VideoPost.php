@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Collection;
  * @property-read Collection<int, Comment> $comments
  * @property-read int|null $comments_count
  */
-class Video extends Model
+class VideoPost extends Model
 {
     use HasFactory, HasComments;
 

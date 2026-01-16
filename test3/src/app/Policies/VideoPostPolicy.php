@@ -4,7 +4,7 @@ namespace App\Policies;
 
 use App\Models\User;
 
-class VideoPolicy
+class VideoPostPolicy
 {
     /**
      * Create a new policy instance.

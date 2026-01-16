@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Video;
+namespace App\Http\Requests\VideoPost;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreVideoRequest extends FormRequest
+class StoreVideoPostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

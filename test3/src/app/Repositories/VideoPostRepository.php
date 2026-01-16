@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-class VideoRepository
+class VideoPostRepository
 {
 
 }
